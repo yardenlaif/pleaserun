@@ -116,6 +116,12 @@ class PleaseRun::Platform::Base
     end
   end
 
+  attribute :delegate, "Whether to delegate control to unit in systemd" do
+    validate do |delegate|
+      insist { delegate }.is_a?(String)
+    end
+  end
+
   attribute :limit_coredump, "Largest size (in blocks) of a core file that can be created. (setrlimit RLIMIT_CORE)" do
     validate { |v| v == "ulimited" || v.to_i > 0 }
   end
